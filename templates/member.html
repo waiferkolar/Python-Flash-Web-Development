@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Member Page
+{% endblock %}
+
+
+{% block content %}
+
+<h1 class="text-center text-info my-5">Welcome Back {{session["username"]}}</h1>
+
+<div class="container">
+    {% if get_flashed_messages() %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>{{get_flashed_messages()[0]}}</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endif %}
+    <table class="table table-bordered">
+        <thead>
+            <tr class="bg-dark text-white">
+                <th scope="col">Id</th>
+                <th scope="col">Title</th>
+                <th scope="col">Author</th>
+                <th scope="col">Image</th>
+                <th scope="col">Content</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for post in posts %}
+            <tr class="text-muted">
+                <td class="text-info">{{post.id}}</td>
+                <td>{{post.title}}</td>
+                <td>{{post.author}}</td>
+                <td><img src="{{url_for('static',filename='imgs/'+post.image)}}" style="width:150px;height:50px;" />
+                </td>
+                <td>{{post.content[0:20]}}</td>
+                <td>
+                    <a href="{{url_for('editPost',id=post.id)}}" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="{{url_for('deletePost',pk=post.id)}}" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

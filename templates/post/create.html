@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Create Post Page
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center center-info">Create Post</h1>
+    <div class="col-md-8 offset-md-2">
+        <form method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" class="form-control" id="title" name="title">
+            </div>
+            <div class="form-group">
+                <label for="author">Author Name</label>
+                <input type="text" class="form-control" id="author" name="author">
+            </div>
+            <div class="form-group">
+                <label for="image">Image</label>
+                <input type="file" class="form-control-file" id="image" name="file">
+            </div>
+            <div class="form-group">
+                <label for="content">Content</label>
+                <textarea class="form-control" id="content" name="content" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-sm flot-right">Post</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
